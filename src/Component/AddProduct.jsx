@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const AddProduct = ({ addProduct, setAddProduct }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [price, setPrice] = useState("");
+  const [category, setCategory] = useState('')
   const [image, setImage] = useState(null);
 
 const navigate = useNavigate();
 
+  const categories = ["Biryani", "Kabab", "Mandi", "Haleem", "Karhai"];
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-   if (title.trim() === "" || description.trim() === "" || price === "" || !image) {
+   if (title.trim() === "" || description.trim() === "" || price === "" || category === "" || !image) {
   alert("Please fill all the fields!");
   return;
 }
@@ -22,7 +26,7 @@ const navigate = useNavigate();
       description,
       price: Number(price),
       image: image ? URL.createObjectURL(image) : "",
-      category: "Custom",
+      category: category,
       status: "available",
     };
 
@@ -71,6 +75,21 @@ const navigate = useNavigate();
               required
             />
           </div>
+
+<div className="form-group">
+            <h4>Item Category</h4>
+            
+            <select value={category} onChange={(e)=>{
+              setCategory(e.target.value)
+            }}  name="" id="">
+              <option value="">--</option>
+              {categories.map((items , indx)=>(
+                <option key={indx} value={items}>{items}</option>
+
+              ))}
+            </select>
+          </div>
+
           <div className="form-group">
             <h4>Select Food Image</h4>
             <input
