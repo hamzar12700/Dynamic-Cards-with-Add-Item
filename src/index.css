@@ -70,3 +70,55 @@ margin: 30px 0px;
 .fromCard input {
   margin: 10px 0px;
 }
+
+button{
+  padding: 10px 15px;
+  margin: 10px;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 1px 1px 1px black;
+}
+
+.btnContainer{
+  width: 100%; 
+  /* background-color: crimson; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* formContainer */
+
+
+.formContainer{
+  height: 100vh;
+  width: 100vw; 
+  /* background-color: red;/ */
+}
+
+.formCard{
+  height: 100%; 
+  width: 100%; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+  border: 1px solid black;
+}
+
+.formCard form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+  border: 1px solid black;
+  padding: 70px;
+  gap: 20px;
+}
+
+.formCard form input{
+  height: 50px;
+  width: 500px;
+padding: 5px 15px;
+font-size: 15px;
+}

@@ -1,37 +1,14 @@
 import React from "react";
 
-const Cards = ({ title, desc, image, price, status , addProduct }) => {
+const Cards = ({ title, desc, image, price, status }) => {
   return (
-    
-      <>
-      <div className="card">
-        <img src={image} alt={title} />
-        <h1>Title :{title}</h1>
-        <h1>Description :{desc}</h1>
-        <h2>Prize : {price}</h2>
-        <h3>
-          Status :
-          <span
-            style={{
-              backgroundColor: status === "available" ? "green" : "red",
-              color: "white",
-            }}
-          >
-            {status}
-          </span>
-        </h3>
-        </div>
-
-        {addProduct.map((item,indx)=>{
-            
-            return   <div className="card">
-        {/* <img src={image} alt={title} /> */}
-        <h1>Title :{item.title}</h1>
-        <h1>Description :{item.desc}</h1>
-        <h2>Prize : {item.price}</h2>
-        </div>
-        })}
-        </>
+    <div className="card">
+      <img src={image} alt={title} />
+      <h3>{title}</h3>
+      <p>{desc}</p>
+      <p>Price: Rs {price}</p>
+      <p>Status: <span style={{ backgroundColor : status === 'available' ? 'green' : 'red' , color : 'white' , padding : '1px 10px' }}>{status}</span></p>
+    </div>
   );
 };
 

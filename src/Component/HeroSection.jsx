@@ -2,9 +2,8 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import Cards from "./Cards";
 
-const HeroSection = ({addProduct}) => {
+const HeroSection = ({ addProduct }) => {
   const [filter, setFilter] = useState("all");
-
 
   const cards = [
     {
@@ -108,65 +107,46 @@ const HeroSection = ({addProduct}) => {
     },
   ];
 
-  let btn = {
-    padding: "5px 15px",
-    gap: "20px",
-  };
+  const allItems = [...cards, ...addProduct];
 
-  let filterItems = [...cards, ...addProduct];
+  const filteredItems = allItems.filter(
+    (item) => filter === "all" || item.category === filter
+  );
 
-  let filterFood = filterItems.filter((item) => {
-    return filter === "all" || item.category === filter;
-  });
+  const categories = ["Biryani", "Kabab", "Mandi", "Haleem", "Karhai"];
 
   return (
     <div className="container">
-      <div className="btnCards">
-        <button style={btn} onClick={() => setFilter("all")}>
-          All
+      
+     <div className="btnContainer">
+         <button class="button" onClick={() => setFilter("all")}>
+        All
         </button>
-        <button style={btn} onClick={() => setFilter("Biryani")}>
-          Biryani
-        </button>
-        <button style={btn} onClick={() => setFilter("Kabab")}>
-          Kabab
-        </button>
-        <button style={btn} onClick={() => setFilter("Mandi")}>
-          Mandi
-        </button>
-        <button style={btn} onClick={() => setFilter("Haleem")}>
-          Haleem
-        </button>
-        <button style={btn} onClick={() => setFilter("Karhai")}>
-          Karhai
-        </button>
+
+        {categories.map((cat) => (
+          
+            <button className="button" key={cat} onClick={() => setFilter(cat)}>{cat}</button>
+        
+        ))}
         <NavLink to="/addProduct">
-          <button
-            style={{
-              backgroundColor: "red",
-              color: "white",
-            }}
-          >
+          <button style={{ backgroundColor: "red", color: "white" }}>
             Add Food Item
           </button>
         </NavLink>
-      </div>
+     </div>
+     
 
       <div className="cardContainer">
-        {filterFood.map((item, indx) => {
-          let { title, description, image, price, status } = item;
-
-          return (
-            <Cards
-              key={indx}
-              title={title}
-              desc={description}
-              image={image}
-              price={price}
-              status={status}
-            />
-          );
-        })}
+        {filteredItems.map((item, index) => (
+          <Cards
+            key={index}
+            title={item.title}
+            desc={item.description}
+            image={item.image}
+            price={item.price}
+            status={item.status}
+          />
+        ))}
       </div>
     </div>
   );
